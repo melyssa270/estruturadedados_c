@@ -1,0 +1,302 @@
+// primeira_questao
+
+
+
+// segunda_questao
+#include <stdio.h>
+
+struct Aluno
+{
+    char nome[50], curso[30];
+    int matricula;
+};
+
+int main() {
+    struct Aluno alunos[5];
+    
+    for (int i = 0; i < 5; i++){
+        printf("Aluno %d", i+1);
+        printf("\nDigite o nome: ");
+        scanf("%[^\n]", alunos[i].nome);
+        
+        while (getchar() != '\n');
+        
+        printf("\nDigite o curso: ");
+        scanf("%[^\n]", alunos[i].curso);
+        
+        while (getchar() != '\n');
+        
+        printf("\nDigite a matrícula: ");
+        scanf("%d", &alunos[i].matricula);
+        printf("-----------------------\n");
+        
+        while (getchar() != '\n');
+    }
+        
+        printf("\nDADOS DOS ALUNOS\n");
+        for (int i = 0; i < 5; i++) {
+            printf("Aluno %d:\n", i + 1);
+            printf("Nome: %s\n", alunos[i].nome);
+            printf("Curso: %s\n", alunos[i].curso);
+            printf("Número de Matrícula: %d\n", alunos[i].matricula);
+            printf("\n");
+    }
+    return 0;
+}
+
+// terceira_questao
+
+#include <stdio.h>
+
+struct Aluno
+{
+    char nome[50];
+    int matricula;
+    float nota1, nota2, nota3;
+    float media;
+};
+
+int main() {
+    struct Aluno alunos[5];
+    
+    printf("Saldo de Notas\n");
+    for (int i = 0; i < 5; i++){
+        printf("\nAluno %d", i+1);
+        printf("\nDigite a matrícula: ");
+        scanf("%d", &alunos[i].matricula);
+        
+        while (getchar() != '\n');
+        
+        printf("\nDigite o nome: ");
+        scanf("%[^\n]", alunos[i].nome);
+        
+        while (getchar() != '\n');
+        
+        printf("\nNota da primeira prova: ");
+        scanf("%f", &alunos[i].nota1);
+        
+        while (getchar() != '\n');
+        
+        printf("\nNota da segunda prova: ");
+        scanf("%f", &alunos[i].nota2);
+        
+        while (getchar() != '\n');
+        
+        printf("\nNota da terceira prova: ");
+        scanf("%f", &alunos[i].nota3);
+        printf("-----------------------\n");
+        
+        alunos[i].media = (alunos[i].nota1 + alunos[i].nota2 + alunos[i].nota3) / 3;
+        while (getchar() != '\n');
+    }
+    
+    int maiorNota1 = 0;
+    for (int i = 0; i < 5; i++){
+        if (alunos[i].nota1 > alunos[maiorNota1].nota1){
+            maiorNota1 = i;
+        }
+    }
+    
+    int maiorMedia = 0;
+    for (int i = 0; i < 5; i++){
+        if (alunos[i].media > alunos[maiorMedia].media){
+            maiorMedia = i;
+        }
+    }
+    
+    int menorMedia = 0;
+    for (int i = 0; i < 5; i++){
+        if (alunos[i].media < alunos[menorMedia].media){
+            menorMedia = i;
+        }
+    }
+    
+    
+    printf("\nESTATÍSTITCAS\n");
+    printf("Maior nota na primeira prova: %.1f\n", alunos[maiorNota1].nota1);
+    printf("Aluno com maior média geral: %s\n", alunos[maiorMedia].nome);
+    printf("Aluno com menor média geral: %s\n", alunos[menorMedia].nome);
+    printf("\n");
+    
+    printf("-----------------------\n");
+    printf("\nAPROVADOS:\n");
+    for (int i = 0; i < 5; i++) {
+        if (alunos[i].media >= 6){
+            printf("%s\n", alunos[i].nome);
+        }
+    }
+    
+    printf("\nREPROVADOS:\n");
+    for (int i = 0; i < 5; i++) {
+        if (alunos[i].media < 6){
+            printf("%s\n", alunos[i].nome);
+        }
+    }
+    return 0;
+}
+
+// quarta_questao
+
+#include <stdio.h>
+
+int main() {
+    int inteiro = 12, *ptrInt;
+    float real = 3.14, *ptrReal;
+    
+    ptrInt = &inteiro;
+    ptrReal = &real;
+    
+    printf("INTEIRO\n");
+    printf("Valor variável: %d\n", inteiro);
+    printf("Endereço de memória: %p\n", &inteiro);
+    printf("Valor do ponteiro: %p\n", ptrInt);
+    printf("Endereço do ponteiro: %p\n", &ptrInt);
+    printf("Valor apontado pelo ponteiro: %d\n", *ptrInt);
+    
+    printf("\nREAL\n");
+    printf("Valor variável f: %.2f\n", real); 
+    printf("Endereço de memória: %p\n", &real);
+    printf("Valor do ponteiro: %p\n", ptrReal);
+    printf("Endereço do ponteiro: %p\n", &ptrReal);
+    printf("Valor apontado pelo ponteiro: %.2f\n", *ptrReal);
+    return 0;
+}
+
+// quinta_questao
+// Online C compiler to run C program online
+#include <stdio.h>
+
+    struct Time 
+    {
+        char nome[50], posicao[20];
+        int idade, numero_camisa;
+    };
+int main() {
+    struct Time principais[6];
+    struct Time reservas[4];
+    int escolha;
+    
+    while(1){
+        printf("-------------- MENU --------------");
+        printf("\nEscolha uma opção:\n");
+        printf("1. Cadastrar jogadores principais\n");
+        printf("2. Cadastrar jogadores reservas\n");
+        printf("3. Visualizar jogadores principais\n");
+        printf("4. Visualizar jogadores reservas\n");
+        printf("5. Sair\n");
+        printf("\nDigite o número da opção: \n");
+        scanf("%d", &escolha);
+        
+        switch(escolha){
+            case 1:
+                printf("\nJogadores Principais\n");
+                for (int i = 0; i < 6; i++){
+                    printf("\nJogador %d\n", i + 1);
+                    printf("Nome: ");
+                    scanf("%s", principais[i].nome);
+                    while (getchar() != '\n');
+                    printf("Idade: ");
+                    scanf("%d", &principais[i].idade);
+                    while (getchar() != '\n');
+                    printf("Posição: ");
+                    scanf("%s", principais[i].posicao);
+                    while (getchar() != '\n');
+                    printf("Número da camisa: ");
+                    scanf("%d", &principais[i].numero_camisa);
+                    while (getchar() != '\n');
+                }
+                break;
+            
+            case 2:
+                printf("\nJogadores Reservas\n");
+                for (int i = 0; i < 4; i++) {
+                    printf("\nJogador %d\n", i + 1);
+                    printf("Nome: ");
+                    scanf("%s", reservas[i].nome);
+                    while (getchar() != '\n');
+                    printf("Idade: ");
+                    scanf("%d", &reservas[i].idade);
+                    while (getchar() != '\n');
+                    printf("Posição: ");
+                    scanf("%s", reservas[i].posicao);
+                    while (getchar() != '\n');
+                    printf("Número da camisa: ");
+                    scanf("%d", &reservas[i].numero_camisa);
+                    while (getchar() != '\n');
+                }
+                break;
+            case 3:
+                for (int i = 0; i < 6; i++) {
+                    printf("\nNome: %s", principais[i].nome);
+                    printf("\nIdade: %d",principais[i].idade);
+                    printf("\nPosição: %s",principais[i].posicao);
+                    printf("\nNúmero da camisa: %d",principais[i].numero_camisa);
+                    
+                }
+                break;
+            case 4:
+                for (int i = 0; i < 4; i++) {
+                    printf("\nNome: %s", reservas[i].nome);
+                    printf("\nIdade: %d",reservas[i].idade);
+                    printf("\nPosição: %s",reservas[i].posicao);
+                    printf("\nNúmero da camisa: %d",reservas[i].numero_camisa);
+                }
+                break;
+            case 5:
+                printf("\nSaindo...\n");
+                return 0;
+            default:
+                printf("\nOpção inválida!\n");
+                
+                
+            
+        }
+}
+    
+
+    return 0;
+}
+
+//sexta_questao
+#include <stdio.h>
+
+struct Aluno
+{
+    char nome[50], curso[30];
+    int matricula;
+};
+
+int main() {
+    struct Aluno alunos[5];
+    
+    for (struct Aluno *ptr = alunos; ptr < alunos + 5; ptr++) {
+        printf("Aluno %ld\n", ptr - alunos + 1);
+        
+        printf("Digite o nome: ");
+        scanf(" %[^\n]", ptr->nome);
+        
+        while (getchar() != '\n');
+        
+        printf("Digite o curso: ");
+        scanf(" %[^\n]", ptr->curso);
+        
+        while (getchar() != '\n');
+        
+        printf("Digite a matrícula: ");
+        scanf("%d", &ptr->matricula);
+        printf("-----------------------\n");
+        
+        while (getchar() != '\n');
+    }
+        
+    printf("\nDADOS DOS ALUNOS\n");
+    for (struct Aluno *ptr = alunos; ptr < alunos + 5; ptr++) {
+        printf("Aluno %ld:\n", ptr - alunos + 1);
+        printf("Nome: %s\n", ptr->nome);
+        printf("Curso: %s\n", ptr->curso);
+        printf("Número de Matrícula: %d\n", ptr->matricula);
+        printf("\n");
+    }
+    
+    return 0;
+}
